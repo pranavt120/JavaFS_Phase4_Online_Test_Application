@@ -1,0 +1,43 @@
+package com.pranav.populate.controller;
+
+
+import java.io.PrintWriter;
+import java.net.http.HttpResponse;
+
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.client.RestTemplate;
+
+@Controller
+@RequestMapping("/quiz")
+public class QuizApiController {
+	
+	
+	@GetMapping("/")
+	public String getQuiz() {
+		
+		String uri = "https://quizapi.io/api/v1/questions";
+		RestTemplate template = new RestTemplate();
+		
+		HttpHeaders headers = new HttpHeaders();
+		headers.set("X-Api-Key", "NBhDHgLiqD0LlElYxHm7Xf4pjgIdhmzYtUWgfW62");
+		
+		HttpEntity<String> entity = new HttpEntity<>(headers);
+		
+		var response = template.exchange(uri, HttpMethod.GET, entity,Object[].class).getBody();
+		
+		for(var a : response) {
+			System.out.println(a);
+		}
+		
+		//System.out.println(response);
+		
+		return "index";
+		
+	}
+
+}

@@ -1,0 +1,5 @@
+package com.pranav.dto;
+
+public class TagsDto {
+
+}

@@ -1,0 +1,27 @@
+package com.pranav.populate.utility;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.pranav.populate.entity.Answers;
+import com.pranav.populate.entity.Options;
+import com.pranav.populate.entity.Tags;
+
+public class Response {
+	@JsonProperty
+	private int id;
+	private String question;
+	private String description;
+	private boolean multipleAnswers;
+	private String correctAnswer;
+	private String explanation;
+	private String tip;
+	private String category;
+	private String difficulty;
+
+	private Options options;
+	private Answers answers;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "tag_id")
+	private Tags tags;
+
+}
